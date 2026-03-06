@@ -55,6 +55,11 @@ int main() {
     cout << "Linked list after deleting node " << del_pos << ": " << endl;
     output(head);
 
+    // Delete entire linked list
+    deleteEntireList(head);
+    cout << "After deleting entire linked list: " << endl;
+    output(head);
+
     return 0;
 }
 
@@ -151,4 +156,14 @@ Node* deleteNodeAtPosition(Node *head, int position) {
     delete toDelete;
 
     return head;
+}
+
+void deleteEntireList(Node *&head) {
+    Node *current = head;
+    while (current != nullptr) {
+        head = current->next;
+        delete current;      
+        current = head;
+    }
+    head = nullptr;
 }
