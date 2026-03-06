@@ -1,5 +1,6 @@
 //COMSC-210-5068, Lab 17, Yang Liu
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 const int SIZE = 7;  
@@ -10,28 +11,22 @@ struct Node {
 };
 
 void output(Node *);
+Node* addNodeToFront(Node *head, int val);  
+Node* addNodeToTail(Node *head, int val);   
+Node* insertNodeAfterPosition(Node *head, int position, int val);  
+Node* deleteNodeAtPosition(Node *head, int position);  
+void deleteEntireList(Node *&head);   
+
 
 int main() {
     Node *head = nullptr;
     int count = 0;
 
-    // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
-        Node *newVal = new Node;
-        
-        // adds node at head
-        if (!head) {
-            head = newVal;
-            newVal->next = nullptr;
-            newVal->value = tmp_val;
-        }
-        else {
-            newVal->next = head;
-            newVal->value = tmp_val;
-            head = newVal;
-        }
+        head = addNodeToFront(head, tmp_val);
     }
+    cout << "Initial linked list: " << endl;
     output(head);
 
     // deleting a node
@@ -120,4 +115,11 @@ void output(Node *hd) {
         current = current->next;
     }
     cout << endl;
+}
+
+Node* addNodeToFront(Node *head, int val) {
+    Node *newNode = new Node;
+    newNode->value = val;
+    newNode->next = head;
+    return newNode;
 }
