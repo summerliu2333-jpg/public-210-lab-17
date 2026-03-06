@@ -29,6 +29,11 @@ int main() {
     cout << "Initial linked list: " << endl;
     output(head);
 
+    //Test addNodeToTail 
+    head = addNodeToTail(head, 666); 
+    cout << "Adding 666 to the TAIL: " << endl;
+    output(head); 
+
     // deleting a node
     cout << "Which node to delete? " << endl;
     output(head);
@@ -122,4 +127,19 @@ Node* addNodeToFront(Node *head, int val) {
     newNode->value = val;
     newNode->next = head;
     return newNode;
+}
+
+Node* addNodeToTail(Node *head, int val) {
+    Node *newNode = new Node;
+    newNode->value = val;
+    newNode->next = nullptr;
+    if (!head) {
+        return newNode;
+    }
+    Node *current = head;
+    while (current->next != nullptr) {
+        current = current->next;
+    }
+    current->next = newNode;
+    return head;
 }
